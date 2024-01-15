@@ -1,5 +1,20 @@
 ## How to run (I don't know what I'm doing, but this works)
 
+### Mac or Linux
+- `sh ./run_simple.sh`
+
+### Windows
+- `bash ./run_simple.sh`
+
+
+## Step by step if above options don't work
+
+### First time grabbing the code, build games_common
+1. `cd games_common`
+2. `mvn install`
+3. `mvn clean package`
+
+### Build and run simple_games
 1. `cd simple_games`
 2. `./build_and_run.ps1`
 
