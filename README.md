@@ -4,7 +4,7 @@
 - `sh ./run_simple.sh`
 
 ### Windows
-- `bash ./run_simple.sh`
+- `.\run_simple.ps1`
 
 
 ## Step by step if above options don't work
