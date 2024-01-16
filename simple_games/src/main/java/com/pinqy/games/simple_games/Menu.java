@@ -20,8 +20,7 @@ public class Menu extends GameFrame {
 
     private static GamePage setupMenuPage(ArrayList<SimpleGamePage> games_list) {
         games = games_list;
-        menu_page = new GamePage();
-        menu_page.setGameName("Menu");
+        menu_page = new GamePage("Menu");
 
         int btn_gap = 30;
         int num_rows = (int) Math.ceil(games.size() / 2.0);

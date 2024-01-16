@@ -11,14 +11,14 @@ public class SimpleGamePage extends GamePage {
     private Menu menu;
     private boolean hasLinkedMenu;
     
-    public SimpleGamePage() {
-        super();
+    public SimpleGamePage(String page_name) {
+        super(page_name);
     }
 
     public void setMenu(Menu m) {
         if (!hasLinkedMenu) {
             menu = m;
-            
+
             JButton backBtn = new JButton("Home");
             backBtn.setBounds(10, 10, 80, 30);
             backBtn.setFocusable(false);

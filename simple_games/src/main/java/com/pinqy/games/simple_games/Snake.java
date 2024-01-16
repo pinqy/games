@@ -28,7 +28,7 @@ public class Snake extends SimpleGamePage {
     }
 
     public Snake() {
-        setGameName("Snake");
+        super("Snake");
 
         executor.scheduleAtFixedRate(stepGame, 500, 75, TimeUnit.MILLISECONDS);
 

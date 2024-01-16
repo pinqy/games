@@ -12,9 +12,11 @@ import java.awt.Graphics;
 import java.awt.event.*;
 
 public class GamePage extends JPanel {
-    private String name = "Game";
+    private String name;
 
-    public GamePage() {
+    public GamePage(String page_name) {
+        name = page_name;
+
         setLayout(null);
         setFocusable(true);
         requestFocusInWindow();
@@ -46,10 +48,6 @@ public class GamePage extends JPanel {
     public void resetPage() {}
 
     // Manage game name
-    public void setGameName(String n) {
-        name = n;
-    }
-
     public String getGameName() {
         return name;
     }
