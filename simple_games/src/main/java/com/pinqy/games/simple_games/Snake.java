@@ -1,7 +1,5 @@
 package com.pinqy.games.simple_games;
 
-import com.pinqy.games.games_common.*;
-
 import javax.swing.*;
 
 import java.awt.*;
@@ -10,7 +8,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.concurrent.*;
 
-public class Snake extends GamePage {
+public class Snake extends SimpleGamePage {
     private ArrayList<Integer[]> body = new ArrayList<Integer[]>();
     private Integer[] food_loc = new Integer[2];
     private Integer[] head_loc = new Integer[2];
@@ -30,6 +28,8 @@ public class Snake extends GamePage {
     }
 
     public Snake() {
+        setGameName("Snake");
+
         executor.scheduleAtFixedRate(stepGame, 500, 75, TimeUnit.MILLISECONDS);
 
         this.addKeyListener(new KeyAdapter() {
@@ -83,6 +83,7 @@ public class Snake extends GamePage {
         body = new ArrayList<Integer[]>();
         
         snake_alive = true;
+        snake_dir = Dir.NONE;
 
         initializeGame();
         resetButton.setVisible(false);
@@ -146,7 +147,7 @@ public class Snake extends GamePage {
                 } else {
                     body.remove(0);
                     for (Integer[] block:body) {
-                        if (block[0] == head_loc[0] && block[1] == head_loc[1]) {
+                        if (snake_alive && (block[0] == head_loc[0] && block[1] == head_loc[1])) {
                             handleLoss();
                             break;
                         }
@@ -154,7 +155,7 @@ public class Snake extends GamePage {
                     body.add(new Integer[]{head_loc[0], head_loc[1]});
                 }
 
-                if (head_loc[0] > 47 || head_loc[0] < 0 || head_loc[1] > 47 || head_loc[1] < 0) {
+                if (snake_alive && (head_loc[0] > 47 || head_loc[0] < 0 || head_loc[1] > 47 || head_loc[1] < 0)) {
                     handleLoss();
                 }
 
@@ -171,6 +172,10 @@ public class Snake extends GamePage {
         resetButton.setVisible(true);
     }
 
+    @Override
+    public void resetPage() {
+        resetGame();
+    }
 
     /*
      * JPanel overrides
@@ -182,8 +187,7 @@ public class Snake extends GamePage {
 
     @Override
     public void paintComponent(Graphics g) {
-        g.setColor(Color.BLACK);
-        drawCenteredHeaderText(g, "Snake");
+        super.paintComponent(g);
 
         g.setColor(Color.RED);
         g.fillRoundRect(0, 50, 500, 500, 10, 10);

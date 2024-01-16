@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -11,6 +12,8 @@ import java.awt.Graphics;
 import java.awt.event.*;
 
 public class GamePage extends JPanel {
+    private String name = "Game";
+
     public GamePage() {
         setLayout(null);
         setFocusable(true);
@@ -39,6 +42,18 @@ public class GamePage extends JPanel {
         return new Dimension(500, 550);
     }
 
+    // Allow a reset command to be implemented for a game that's closed and reopened
+    public void resetPage() {}
+
+    // Manage game name
+    public void setGameName(String n) {
+        name = n;
+    }
+
+    public String getGameName() {
+        return name;
+    }
+
     // Common functions for drawing in page
     public void drawCenteredString(Graphics g, int center_x, int center_y, String text) {
         FontMetrics fm = g.getFontMetrics();
@@ -52,5 +67,13 @@ public class GamePage extends JPanel {
     public void drawCenteredHeaderText(Graphics g, String str) {
         g.setFont(new Font(g.getFont().getFontName(), Font.BOLD, 32));
         drawCenteredString(g, this.getWidth()/2, 25, str);
+    }
+
+    // paint common features
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        g.setColor(Color.BLACK);
+        drawCenteredHeaderText(g, getGameName());
     }
 }

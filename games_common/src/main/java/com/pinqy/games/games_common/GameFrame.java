@@ -7,12 +7,12 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class GameFrame {
-    private JFrame frame;
-    private GamePage page;
+    private static JFrame frame;
+    private static GamePage page;
     private boolean resizeable;
 
-    public GameFrame(GamePage page, boolean resizeable) {
-        this.page = page;
+    public GameFrame(GamePage game_page, boolean resizeable) {
+        page = game_page;
         this.resizeable = resizeable;
     }
 
@@ -43,8 +43,10 @@ public class GameFrame {
     }
 
     // functions for game lifecycle
-    public void changePage(GamePage newPage) {
+    public static void changePage(GamePage newPage) {
         frame.add(newPage);
+        newPage.setVisible(true);
+        newPage.resetPage();
 
         page.setVisible(false);
         frame.remove(page);
