@@ -44,6 +44,8 @@ public class Snake extends SimpleGamePage {
                     turn(Dir.DOWN);
                 } else if(keyCode==KeyEvent.VK_LEFT || keyCode==KeyEvent.VK_A) {
                     turn(Dir.LEFT);
+                } else if(keyCode==KeyEvent.VK_ENTER) {
+                    resetGame();
                 }
             }
         });
